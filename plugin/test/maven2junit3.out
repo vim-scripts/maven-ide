@@ -1,0 +1,70 @@
+[INFO] Scanning for projects...
+[INFO] ------------------------------------------------------------------------
+[INFO] Building test
+[INFO]    task-segment: [clean, install]
+[INFO] ------------------------------------------------------------------------
+[INFO] [clean:clean]
+[INFO] Deleting directory /home/daren/NetBeansProjects/test/target
+[INFO] [resources:resources]
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 1 resource
+[INFO] [compiler:compile]
+[INFO] Compiling 3 source files to /home/daren/NetBeansProjects/test/target/classes
+[INFO] [resources:testResources]
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 1 resource
+[INFO] [compiler:testCompile]
+[INFO] Compiling 1 source file to /home/daren/NetBeansProjects/test/target/test-classes
+[INFO] [surefire:test]
+[INFO] Surefire report directory: /home/daren/NetBeansProjects/test/target/surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running test.AppTest
+Tests run: 3, Failures: 2, Errors: 1, Skipped: 0, Time elapsed: 0.038 sec <<< FAILURE!
+testApp(test.AppTest)  Time elapsed: 0.008 sec  <<< ERROR!
+java.lang.ArithmeticException: / by zero
+	at test.AppTest.testApp(AppTest.java:35)
+
+testApp1(test.AppTest)  Time elapsed: 0.001 sec  <<< FAILURE!
+junit.framework.AssertionFailedError: Rigourous Test1. expected:<1> but was:<2>
+	at junit.framework.Assert.fail(Assert.java:47)
+	at junit.framework.Assert.failNotEquals(Assert.java:280)
+	at junit.framework.Assert.assertEquals(Assert.java:64)
+	at junit.framework.Assert.assertEquals(Assert.java:198)
+	at test.AppTest.testApp1(AppTest.java:40)
+
+testApp2(test.AppTest)  Time elapsed: 0.001 sec  <<< FAILURE!
+junit.framework.AssertionFailedError: Rigourous Test2. expected:<3> but was:<2>
+	at junit.framework.Assert.fail(Assert.java:47)
+	at junit.framework.Assert.failNotEquals(Assert.java:280)
+	at junit.framework.Assert.assertEquals(Assert.java:64)
+	at junit.framework.Assert.assertEquals(Assert.java:198)
+	at test.AppTest.testApp2(AppTest.java:44)
+
+
+Results :
+
+Failed tests: 
+  testApp1(test.AppTest)
+  testApp2(test.AppTest)
+
+Tests in error: 
+  testApp(test.AppTest)
+
+Tests run: 3, Failures: 2, Errors: 1, Skipped: 0
+
+[INFO] ------------------------------------------------------------------------
+[ERROR] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] There are test failures.
+
+Please refer to /home/daren/NetBeansProjects/test/target/surefire-reports for the individual test results.
+[INFO] ------------------------------------------------------------------------
+[INFO] For more information, run Maven with the -e switch
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 2 seconds
+[INFO] Finished at: Tue Apr 17 09:03:36 EST 2012
+[INFO] Final Memory: 16M/159M
+[INFO] ------------------------------------------------------------------------

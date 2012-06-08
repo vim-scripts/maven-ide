@@ -1,0 +1,88 @@
+[INFO] Scanning for projects...
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for test:test:jar:1.0-SNAPSHOT
+[WARNING] 'build.plugins.plugin.version' for org.apache.maven.plugins:maven-surefire-plugin is missing. @ line 19, column 17
+[WARNING] 
+[WARNING] It is highly recommended to fix these problems because they threaten the stability of your build.
+[WARNING] 
+[WARNING] For this reason, future Maven versions might no longer support building such malformed projects.
+[WARNING] 
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building test 1.0-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:2.4.1:clean (default-clean) @ test ---
+[INFO] Deleting /opt/dev/NetBeansProjects/test/target
+[INFO] 
+[INFO] --- maven-resources-plugin:2.4.3:resources (default-resources) @ test ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 1 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:2.3.2:compile (default-compile) @ test ---
+[INFO] Compiling 3 source files to /opt/dev/NetBeansProjects/test/target/classes
+[INFO] 
+[INFO] --- maven-resources-plugin:2.4.3:testResources (default-testResources) @ test ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 1 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:2.3.2:testCompile (default-testCompile) @ test ---
+[INFO] Compiling 1 source file to /opt/dev/NetBeansProjects/test/target/test-classes
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.7.2:test (default-test) @ test ---
+[INFO] Surefire report directory: /opt/dev/NetBeansProjects/test/target/surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running test.AppTest
+Tests run: 3, Failures: 2, Errors: 1, Skipped: 0, Time elapsed: 0.169 sec <<< FAILURE!
+testApp(test.AppTest)  Time elapsed: 0.019 sec  <<< ERROR!
+java.lang.ArithmeticException: / by zero
+	at test.AppTest.testApp(AppTest.java:35)
+
+testApp1(test.AppTest)  Time elapsed: 0.001 sec  <<< FAILURE!
+junit.framework.AssertionFailedError: Rigourous Test1. expected:<1> but was:<2>
+	at junit.framework.Assert.fail(Assert.java:47)
+	at junit.framework.Assert.failNotEquals(Assert.java:280)
+	at junit.framework.Assert.assertEquals(Assert.java:64)
+	at junit.framework.Assert.assertEquals(Assert.java:198)
+	at test.AppTest.testApp1(AppTest.java:40)
+
+testApp2(test.AppTest)  Time elapsed: 0.001 sec  <<< FAILURE!
+junit.framework.AssertionFailedError: Rigourous Test2. expected:<3> but was:<2>
+	at junit.framework.Assert.fail(Assert.java:47)
+	at junit.framework.Assert.failNotEquals(Assert.java:280)
+	at junit.framework.Assert.assertEquals(Assert.java:64)
+	at junit.framework.Assert.assertEquals(Assert.java:198)
+	at test.AppTest.testApp2(AppTest.java:44)
+
+
+Results :
+
+Failed tests: 
+  testApp1(test.AppTest): Rigourous Test1. expected:<1> but was:<2>
+  testApp2(test.AppTest): Rigourous Test2. expected:<3> but was:<2>
+
+Tests in error: 
+  testApp(test.AppTest): / by zero
+
+Tests run: 3, Failures: 2, Errors: 1, Skipped: 0
+
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 19.251s
+[INFO] Finished at: Tue Apr 17 20:37:48 EST 2012
+[INFO] Final Memory: 10M/47M
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:2.7.2:test (default-test) on project test: There are test failures.
+[ERROR] 
+[ERROR] Please refer to /opt/dev/NetBeansProjects/test/target/surefire-reports for the individual test results.
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

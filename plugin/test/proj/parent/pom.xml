@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.test</groupId>
+    <artifactId>test-toplevel-pom</artifactId>
+    <name>The parent pom for the vim maven plugin test.</name>
+    <packaging>pom</packaging>
+    <version>1.0.0</version>
+
+    <!-- Please note: this is just a convenience pom, to do a build from the root directory of the project.  If you want to add versioning
+        for dependencies, then add them to the pom in the 04reports-standards module.  -->
+    <modules>
+        <module>test1</module>
+        <module>test2</module>
+        <module>test3</module>
+        <module>test4</module>
+    </modules>
+
+    <build>
+       <pluginManagement>
+          <plugins>
+            <plugin>
+              <artifactId>maven-help-plugin</artifactId>
+              <version>2.1.1</version>
+            </plugin>
+            <plugin>
+              <artifactId>versions-maven-plugin</artifactId>
+              <version>1.3.1</version>
+            </plugin>
+          </plugins>
+       </pluginManagement>
+    </build>
+</project>
+

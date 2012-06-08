@@ -1,0 +1,67 @@
+58,62c58,64
+<         m1 = re.search('Set deferred breakpoint ([A-Za-z0-9]+):([0-9]+)', line)
+<         m2 = re.search('Set breakpoint ([A-Za-z0-9]+):([0-9]+)$', line)
+<         m4 = re.search('Removed: breakpoint ([A-Za-z0-9]+):([0-9]+)$', line)
+<         m3 = re.match('Breakpoint hit: "thread=([A-Za-z0-9]+)", ([A-Za-z0-9]+).([A-Za-z0-9<>]+\([^)]*\)), line=([0-9]+) bci=([0-9]+)', line)
+<         m5 = re.search('Step completed: "thread=([A-Za-z0-9]+)", ([A-Za-z0-9]+).([A-Za-z0-9<>]+\([^)]*\)), line=([0-9]+) bci=([0-9]+)', line)
+---
+>         m1 = re.search('Set deferred breakpoint ([A-Za-z0-9.]+):([0-9]+)', line)
+>         m2 = re.search('Set breakpoint ([A-Za-z0-9.]+):([0-9]+)$', line)
+>         m4 = re.search('Removed: breakpoint ([A-Za-z0-9.]+):([0-9]+)$', line)
+> #m3 = re.match('Breakpoint hit: "thread=([A-Za-z0-9]+)", ([A-Za-z0-9]+).([A-Za-z0-9<>]+\([^)]*\)), line=([0-9]+) bci=([0-9]+)', line)
+>         m3 = re.match('Breakpoint hit: "thread=([A-Za-z0-9.-]+)", ([A-Za-z0-9<>().]+), line=([0-9]+) bci=([0-9]+)', line)
+> #m5 = re.search('Step completed: "thread=([A-Za-z0-9]+)", ([A-Za-z0-9<>()]+).([A-Za-z0-9<>]+\([^)]*\)), line=([0-9]+) bci=([0-9]+)', line)
+>         m5 = re.search('Step completed:[ a-zA-Z0-9[\]]* "thread=([A-Za-z0-9.-]+)", ([A-Za-z0-9<>().$-]+), line=([0-9]+) bci=([0-9]+)', line)
+65d66
+<             print 'Breakpoint Set Detected:', m1.groups()
+67c68
+<             filename = m1.group(1) + ".java"
+---
+>             filename = self.getJavaFilename(m1.group(1))
+71a73
+>             print 'yavdb: Breakpoint1 Set Detected:', filename, ' line:', curLine 
+73d74
+<             print 'Breakpoint Set Detected:', m2.groups()
+75c76
+<             filename = m2.group(1) + ".java"
+---
+>             filename = self.getJavaFilename(m2.group(1))
+79a81
+>             print 'yavdb: Breakpoint2 Set Detected:', filename, ' line:', curLine 
+81d82
+<             print 'Breakpoint Clear Detected:', m4.groups()
+83c84
+<             filename = m4.group(1) + ".java"
+---
+>             filename = self.getJavaFilename(m4.group(1))
+86a88
+>             print 'yavdb: Breakpoint Clear Detected:', filename, ' line:', curLine 
+88,89c90,91
+<             curLine  = m3.group(4)
+<             filename = m3.group(2) + ".java"
+---
+>             curLine  = m3.group(3)
+>             filename = self.getJavaFilename(m3.group(2))
+93c95
+<             print 'Breakpoint Stop Detected:', m3.groups()
+---
+>             print 'yavdb: Breakpoint Stop Detected:', filename, ' line:', curLine 
+95,96c97,98
+<             curLine  = m5.group(4)
+<             filename = m5.group(2) + ".java"
+---
+>             curLine  = m5.group(3)
+>             filename = self.getJavaFilename(m5.group(2))
+100c102,103
+<             print 'Line Step Detected:', m5.groups()
+---
+>             print 'yavdb: Line Step Detected:', filename, ' line:', curLine 
+> 
+102a106,112
+>     def getJavaFilename(self, classname):
+>         classname = re.sub('\\.[^.]*\(\)$', '', classname) #remove method
+>         classname = re.sub('\\$.*', '', classname) #remove inner classes
+>         filename = re.sub('\\.', '/', classname) + '.java'
+>         return filename
+>     #end def getJavaFilename
+> 

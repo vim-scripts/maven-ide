@@ -1,0 +1,76 @@
+11,12c11,12
+< sign define breakpoint linehl=DebugBreak
+< sign define current    linehl=DebugStop
+---
+> sign define breakpoint linehl=DebugBreak text=x
+> sign define current    linehl=DebugStop text=>
+71,74c71
+<     call VDBJumpToLine(a:linenum, a:file)
+<     if !bufexists(a:file)
+<         execute "bad ".a:file
+<     endif
+---
+>     let l:filename = VDBJumpToLine(a:linenum, a:file)
+76c73
+<     execute "sign place   " . a:id . " name=breakpoint line=".a:linenum." file=".a:file
+---
+>     execute "sign place   " . a:id . " name=breakpoint line=".a:linenum." file=".l:filename
+80c77,78
+<     execute "sign unplace " . a:id . " file=".a:file
+---
+>     let l:filename = findfile(a:file) 
+>     execute "sign unplace " . a:id . " file=".l:filename
+84,86c82,85
+<     if !bufexists(a:file)
+<         if !filereadable(a:file)
+<             return
+---
+>     let l:foundFile = findfile(a:file)
+>     if !bufexists(l:foundFile)
+>         if !filereadable(l:foundFile)
+>             throw "file not found:".a:file
+88c87
+<         execute "e ".a:file
+---
+>         execute "e ".l:foundFile
+90c89
+<         execute "b ".a:file
+---
+>         execute "b ".l:foundFile
+92,93c91
+<     let s:file=a:file
+<     execute a:line
+---
+>     :execute a:line
+94a93
+>     return l:foundFile
+98c97
+<     call VDBJumpToLine(a:line, a:file)
+---
+>     let l:foundFile = VDBJumpToLine(a:line, a:file)
+100c99
+<     execute "sign place " .  1 ." name=current line=".a:line." file=".a:file
+---
+>     execute "sign place " .  1 ." name=current line=".a:line." file=".l:foundFile
+109a109
+>     silent! nunmap <C-F9>
+115a116,129
+> function! VDBGetJavaFilePackage()
+>     let l:res = ""
+>     let l:line_imp = search ('^\s*package\s\+',"nb")
+>     if  l:line_imp > 0
+>         let l:str = getline(l:line_imp)
+>         let l:cend = matchend(l:str,'^\s*package\s\+')
+>         if  l:cend!= -1
+>             let l:tmp = matchstr(l:str,".*$",l:cend)
+>             let l:res =l:res.strpart(l:tmp,0,stridx(l:tmp,";"))
+>         endif
+>     endif
+>     return l:res
+> endfunction
+> 
+123c137,138
+<         nmap <unique> <F9>          :execute "Vdb stop at " . substitute(bufname("%"), ".java", "", "") . ":" . line(".")<CR>
+---
+>         nmap <unique> <F9>          :execute "Vdb stop at " . VDBGetJavaFilePackage() . "." . expand("%:t:r") . ":" . line(".")<CR>
+>         nmap <unique> <C-F9>        :execute "Vdb clear " . VDBGetJavaFilePackage() . "." . expand("%:t:r") . ":" . line(".")<CR>

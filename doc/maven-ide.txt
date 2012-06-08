@@ -1,0 +1,295 @@
+*maven-ide.txt*	For Vim version 7.x. Last Change: Wed Jun  6 20:30:20 EST 2012
+
+	Plugin for managing java maven projects.	
+
+				by Daren Isaacs
+		      ikkyisaacs email-at-sign gmail com
+
+					    *maven-ide* *maven-ide-plugin*
+	Contents:
+
+		Dependencies..............|maven-ide-depends|
+		Todo.........................|maven-ide-todo|
+		Limitations................|maven-ide-limits|
+		Settings.................|maven-ide-settings|
+		Installation.........|maven-ide-installation|
+		Quickstart.............|maven-ide-quickstart|
+		Mappings.................|maven-ide-mappings|
+		Bugs.........................|maven-ide-bugs|
+
+The goal of maven-ide plugin is to provide ide functionality for the
+development of java maven projects.
+
+Features include:
+	o Project tree for file navigation and environment context management.
+	o Quickfix for output of maven plugins compile,junit,checkstyle.
+    o Optional single source file compilation directly with javac.
+    o Compilation is background via AsyncCommand.
+    o Debug using yavdb, allows debug of class main or attach to jvm debug
+       port.
+	o Junit run/quickfix/debug.
+    o Dependency source file and javadoc integration. Javadoc viewing uses
+      lynx.
+    o Exctags tag navigation.
+    o Auto generation of project environment ie classpath, tag files.
+    o Dependency management for maven parent/child/sibling projects extracted
+      from project poms.
+    o Autocomplete on methods, auto add of imports etc is via the vjde plugin
+      project.
+
+==============================================================================
+DEPENDENCIES 						*maven-ide-depends*
+
+External Dependencies:
+    o Developed and tested on Linux and FreeBSD.
+    o Tested on jdk1.6, maven2, maven3.
+    o Lynx browser: javadoc display.
+    o textproc/p5-XML-XPath (aka libxml-xpath-perl): pom.xml processing.
+    o Exuberant Ctags: tag navigation.
+    o yavdb dependencies: python 2.5, vim compiled with signs, client-server
+      and python support, an os with named pipes support.
+
+Vim Project Dependencies:
+    o Project by Aric Blumer: project navigation and environment management.
+    o AsyncCommand: background compilation.
+    o yavdb: debug.
+    o javac.vim: the default javac vim compiler file.
+    o vjde: method autocomplete, auto import etc.
+
+==============================================================================
+TODO 								*maven-ide-todo*
+
+    o Add background processing for MvnBuildEnvSelection().
+    o Allow attach to a debug process on a remote host.
+    o Add a function to allow jumping to name of the current source file
+      in the 'Project' tree.
+    o Improve debug variable inspection functionality. Currently variable
+      values are printed in the jdb console, and dump of variables is
+      directly via jdb.
+    o Add multi thread debug support.
+    o Extract the maven main (source, resources), test (source, resources)
+      directories from the project pom.xml (currently hardcoded).
+	o Adjust mappings to the correct context.
+	o Add unit tests for all functionality in MvnRunTests().
+
+==============================================================================
+LIMITATIONS 						*maven-ide-limits*
+
+    o Source files not opened via 'Project' do not configure the maven
+      environment - limitation of the 'Project' plugin. The environment
+      may be set manually with the 'Project' \e key mapping.
+
+==============================================================================
+INSTALLATION                        *maven-ide-installation*
+
+EXTERNAL SOFTWARE DEPENDENCIES
+    o Install lynx text browser.
+    o Install Exuberant Ctags. FreeBSD devel/ctags.
+    o Install the perl xpath module.
+        FreeBSD - textproc/p5-XML-XPath
+        Linux - libxml-xpath-perl
+
+VIM PLUGIN DEPENDENCIES
+    o Recommend the installation of pathogen to organise plugin installation.
+      (Pathogen allows plugins to be installed separately in their own
+      subdirectory of ~/.vim/bundle/)
+        o git clone http://github.com/tpope/vim-pathogen
+        o mkdir ~/.vim/bundle
+        o cp pathogen.vim ~/.vim/autoload
+        o echo "call pathogen#infect()" >> _vimrc
+    o Install Project
+        o http://www.vim.org/scripts/script.php?script_id=69
+        o Download the tar and extract into ~/.vim/bundle
+		o :helptags ~/.vim/bundle/project/doc
+    o Install yavdb
+        o http://www.vim.org/scripts/script.php?script_id=1954
+        o mkdir -p ~/.vim/bundle/yavdb/{plugin,doc}
+        o cp yavdb.vim ~/.vim/bundle/yavdb/plugin
+		o cp yavdb.txt ~/.vim/bundle/yavdb/doc
+        o cp yavdb to a directory in your path.
+		o :helptags ~/.vim/bundle/vjde/doc
+    o Install AsyncCommand in ~/.vim/bundle/asynccommand
+        o http://www.vim.org/scripts/script.php?script_id=3431
+		o :helptags ~/.vim/bundle/asynccommand/doc
+    o Install vjde in ~/.vim/bundle/vjde.
+        o http://www.vim.org/scripts/script.php?script_id=1213
+		o :helptags ~/.vim/bundle/vjde/doc
+    o Install maven-ide in ~/.vim/bundle/maven-ide
+		o :helptags ~/.vim/bundle/maven-ide/doc
+		o install ~/.vim/bundle/maven-ide/yavdb patches to yavdb project.
+
+RECOMMENDED VIM PLUGINS
+    o bufmru - easily switch to most recently used buffers.
+      http://www.vim.org/scripts/script.php?script_id=69
+    o vcscommand - version control.
+      http://www.vim.org/scripts/script.php?script_id=90
+
+==============================================================================
+SETTINGS							*maven-ide-settings*
+
+The default settings for the maven-ide global variables.
+
+g:mvn_javadocParentDir 				*mvn_javadocParentDir*
+	- directory for dependency javadoc installation by maven-ide: >
+    let g:mvn_javadocParentDir = "/opt/work/javadoc"
+
+g:mvn_javaSourceParentDir			*mvn_javaSourceParentDir*
+	- directory for dependency source installation by maven-ide: >
+    let g:mvn_javaSourceParentDir = "/opt/work/javasource"
+
+g:mvn_additionalJavadocPath			*mvn_additionalJavadocPath*
+	- path for javadoc (non maven dependency): >
+    let g:mvn_additionalJavadocPath = "/opt/work/javadoc/jdk-6u30-apidocs/api"
+
+g:mvn_additionalJavaSourcePath		*mvn_additionalJavaSourcePath*
+	- path for java source (non maven dependency): >
+    let g:mvn_additionalJavaSourcePath = "/opt/work/javasource/openjdk6-b24_4"
+
+g:mvn_javaSrcFilterList				*mvn_javaSrcFilterList*
+    - extension list for source files: >
+    let g:mvn_javaSrcFilterList = ["*.java", "*.html", "*.js", "*.jsp"]
+
+g:mvn_resourceFilterList			*mvn_resourceFilterList*
+	- extension list for resource files: >
+    let g:mvn_resourceFilterList = ["*.vim", "*.xml", "*.properties", ".vjde"]
+
+g:mvn_mavenType						*mvn_mavenType*
+	- maven version (maven2 or maven3): >
+    let g:mvn_mavenType = "maven3"
+
+g:mvn_debugPortList					*mvn_debugPortList*
+	- ports for debug prompt:
+    let g:mvn_debugPortList = [8888,11550]
+
+g:mvn_pluginList					*mvn_pluginList*
+	- maven output processor modules (this is the complete list for now).
+	These plugins parse the output errors to a quickfix list: >
+    let g:mvn_pluginList = ['Mvn3Plugin', 'Junit3Plugin', 'CheckStylePlugin']
+
+g:mvn_compilerVersion				*mvn_compilerVersion*
+	-maven compiler version (currently only the output from 2.5 is supported).
+	Different versions of the compiler produce differing output so standardize
+	on a version: >
+    let g:mvn_compilerVersion = '2.5'
+
+==============================================================================
+QUICKSTART 							*maven-ide-quickstart*
+
+Note: The initial project configuration requires error free maven execution
+of help:effective-pom and dependency:build-classpath goals.
+
+Adjust the|maven-ide-settings|for your environment in your _vimrc.
+
+Invoke vim as the server:
+	vim --servername ide
+
+Run the unit tests:
+	:call MvnRunTests()
+
+In vim invoke the|project|plugin:
+    :Project
+
+Create the maven project tree in the left window by invoking
+MvnInsertProjectTree() (mapped to \bp). The 3 key sequence must be
+entered quickly (see|map.txt|timeout|leader|). A prompt will ask for the project
+path of an existing maven project:
+	\bp
+
+A|:fold|should now exist for the maven project containing the directory
+structure. Position the cursor on the main fold for the project, and first
+set the environment (see|project-mapping|):
+	\e
+
+Then optionally download the project dependency source and install
+into|mvn_javaSourceParentDir|:
+	\ds
+
+Optionally download the project dependency javadoc and install
+into|mvn_javadocParentDir|:
+	\dd
+
+To populate the structure with files, position the cursor on the
+project line and use the refresh fold command (see|project-mapping|):
+    \R
+
+The tree structure should be populated with project source files. To populate
+the project environment file (in.vim), position the cursor on the first line
+of the project and invoke:
+    \be
+
+A prompt for the project count will appear, enter 1.
+
+==============================================================================
+MAPPINGS						    *maven-ide-mappings*
+
+Map	Function 							Context~
+
+\be MvnBuildEnvSelection()  			project buffer
+Build the environment file (in.vim) for the 'in='|project-syntax|. The
+environment file is run on \e (setup environment |project-mappings|) or
+when a file is opened from the project buffer. On execution a prompt for
+the project count, collects the setting for the number of consecutive
+parent projects the environment will be built, starting from the cursor
+position in the project tree.
+
+\bp MvnInsertProjectTree()				project buffer
+At the cursor location in the project buffer, build the directory tree for
+the maven project. The maven project directory is specified at the prompt
+on execution. Files are not populated in the tree and are added with \R
+see|project-mapping|.
+
+\dd MvnDownloadJavadoc()  				project or source buffer
+Download and install the javadoc dependencies into|mvn_javadocParentDir|
+directory. >
+
+\ds MvnDownloadJavaSource()				project or source buffer
+Download and install the java source dependencies into
+|mvn_javaSourceParentDir|directory. A \be must be run after \ds to include
+the new source in the project environment.
+
+\fc MvnFindJavaClass()					project or source buffer
+A prompt is given to enter a classname for search. The search is across all
+jar files in the maven .m2 repository.
+
+\rm MvnCompile() 		    			project or source buffer
+Compile current maven project (mvn clean install). The Apache compiler plugin
+version is fixed by|mvn_compilerVersion|setting.
+
+\rj MvnJavacCompile() 					source buffer	
+Direct invocation of javac for compilation of the current file ONLY. A time
+saving alternative to running a maven compile. Requires class dependencies
+in the target directory. ie do \rm first.
+
+NOTE Compilations run in the background with|AsyncCommand|use <C-L> to
+refresh the screen, errors will display in a quickfix window.
+
+\rd MvnDoDebug() 						source buffer
+Run debug on the current main or junit test source file or connect to a
+preexisting debug process by port.
+
+\rt MvnRunJunit() 		    			source buffer
+Run the current junit source file, with quickfix for errors.
+
+\sd MvnOpenJavaDoc() 	    			project or source buffer
+Open in lynx the javadoc for the classname under the cursor. The full
+class name is determined using|vjde|.
+
+\bt MvnTagCurrentFile()					source buffer
+Update the tags for the current file.
+
+\gs MvnFindInherits()					source buffer
+Search the tag files of the project for subclasses of the superclass under the
+cursor.
+
+\ps MvnPickInherits()					source buffer
+Pick from the list of the previous MvnFindInherits() search.
+
+==============================================================================
+BUGS    						    *maven-ide-bugs*
+
+If possible recreate the bug in a unit test, see MvnRunTests(), before coding
+a fix.
+
+==============================================================================
+
+vim:ts=4 sw=4 noexpandtab tw=78 ft=help:

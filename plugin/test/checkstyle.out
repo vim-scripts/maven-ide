@@ -1,0 +1,126 @@
+[INFO] Scanning for projects...
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building Encompass Domain 1.0-encompass-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-resources-plugin:2.4.3:resources (default-resources) @ common-domain ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 0 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:2.0.2:compile (default-compile) @ common-domain ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-checkstyle-plugin:2.2:checkstyle (default) @ common-domain ---
+[INFO] Setting property: classpath.resource.loader.class => 'org.codehaus.plexus.velocity.ContextClassLoaderResourceLoader'.
+[INFO] Setting property: velocimacro.messages.on => 'false'.
+[INFO] Setting property: resource.loader => 'classpath'.
+[INFO] Setting property: resource.manager.logwhenfound => 'false'.
+[INFO] ************************************************************** 
+[INFO] Starting Jakarta Velocity v1.4
+[INFO] RuntimeInstance initializing.
+[INFO] Default Properties File: org/apache/velocity/runtime/defaults/velocity.properties
+[INFO] Default ResourceManager initializing. (class org.apache.velocity.runtime.resource.ResourceManagerImpl)
+[INFO] Resource Loader Instantiated: org.codehaus.plexus.velocity.ContextClassLoaderResourceLoader
+[INFO] ClasspathResourceLoader : initialization starting.
+[INFO] ClasspathResourceLoader : initialization complete.
+[INFO] ResourceCache : initialized. (class org.apache.velocity.runtime.resource.ResourceCacheImpl)
+[INFO] Default ResourceManager initialization complete.
+[INFO] Loaded System Directive: org.apache.velocity.runtime.directive.Literal
+[INFO] Loaded System Directive: org.apache.velocity.runtime.directive.Macro
+[INFO] Loaded System Directive: org.apache.velocity.runtime.directive.Parse
+[INFO] Loaded System Directive: org.apache.velocity.runtime.directive.Include
+[INFO] Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
+[INFO] Created: 20 parsers.
+[INFO] Velocimacro : initialization starting.
+[INFO] Velocimacro : adding VMs from VM library template : VM_global_library.vm
+[ERROR] ResourceManager : unable to find resource 'VM_global_library.vm' in any resource loader.
+[INFO] Velocimacro : error using  VM library template VM_global_library.vm : org.apache.velocity.exception.ResourceNotFoundException: Unable to find resource 'VM_global_library.vm'
+[INFO] Velocimacro :  VM library template macro registration complete.
+[INFO] Velocimacro : allowInline = true : VMs can be defined inline in templates
+[INFO] Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
+[INFO] Velocimacro : allowInlineLocal = false : VMs defined inline will be  global in scope if allowed.
+[INFO] Velocimacro : initialization complete.
+[INFO] Velocity successfully started.
+[INFO] Starting audit...
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/inventory/Consolidator.java:37:37: Variable 'consecutiveCount' should be declared final.
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/inventory/Consolidator.java:42:29: Variable 'inventoryDates' should be declared final.
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/inventory/Consolidator.java:43:31: Variable 'inventoryMaster' should be declared final.
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/inventory/Consolidator.java:58:29: Variable 'inventoryDateList' should be declared final.
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/inventory/Consolidator.java:60:24: Variable 'inventoryElements' should be declared final.
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/inventory/Consolidator.java:90:49: Expected @param tag for 'inventoryElement'.
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/inventory/Consolidator.java:90:84: Expected @param tag for 'startDateList'.
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/inventory/Consolidator.java:93:29: Variable 'newInventoryDates' should be declared final.
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/inventory/Consolidator.java:94:25: Variable 'unitTypeList' should be declared final.
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/inventory/Consolidator.java:95:18: Variable 'product' should be declared final.
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/inventory/Consolidator.java:131:51: Variable 'nxtInventoryDate' should be declared final.
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/inventory/Consolidator.java:172: Line is longer than 120 characters.
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/inventory/Consolidator.java:249: Expected an @return tag.
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/inventory/InventoryDetail.java:8: Trailing whitespace found.
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/inventory/InventoryDetail.java:175:48: Variable 'inventoryDate' should be declared final.
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/inventory/InventoryDetail.java:183:42: Variable 'seatClass' should be declared final.
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/inventory/element/InventorySimpleResource.java:12: Type Javadoc comment is missing an @version tag.
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/inventory/element/InventorySimpleResource.java:12: Type Javadoc tag @author must match pattern '\S \S'.
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/inventory/element/ElementFactory.java:15:5: Missing a Javadoc comment.
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/inventory/element/ElementFactory.java:15:64: Variable 'productType' should be declared final.
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/inventory/element/ElementFactory.java:17:24: Variable 'elementList' should be declared final.
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/inventory/element/IElement.java:24:20: Unclosed HTML tag found: <InventoryDate> - the raw inventory in a common format.
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/inventory/element/IElement.java:26:5: Redundant 'abstract' modifier.
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/inventory/element/IElement.java:32:5: Redundant 'abstract' modifier.
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/inventory/element/IElement.java:42:5: Redundant 'abstract' modifier.
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/inventory/element/IElement.java:47:8: Unused @param tag for 'product'.
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/inventory/element/IElement.java:50:5: Redundant 'abstract' modifier.
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/inventory/element/IElement.java:50:59: Expected @param tag for 'unitType'.
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/inventory/element/IElement.java:56:5: Redundant 'abstract' modifier.
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/inventory/element/IElement.java:62:5: Redundant 'abstract' modifier.
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/inventory/element/InventoryCompound.java:27:5: Missing a Javadoc comment.
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/inventory/element/InventoryCompound.java:28:29: Variable 'inventoryDateList' should be declared final.
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/inventory/element/InventoryCompound.java:31: Line is longer than 120 characters.
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/inventory/element/InventoryCompound.java:39:34: Variable 'cpd' should be declared final.
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/inventory/element/InventoryCompound.java:40:29: Variable 'inventoryDetail' should be declared final.
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/inventory/element/InventoryCompound.java:51:5: Missing a Javadoc comment.
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/inventory/element/InventoryCompound.java:51:53: Variable 'inventoryDetail' should be declared final.
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/inventory/element/InventoryCompound.java:55: Line is longer than 120 characters.
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/inventory/element/InventoryCompound.java:55:5: Missing a Javadoc comment.
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/inventory/element/InventoryCompound.java:55:46: Variable 'product' should be declared final.
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/inventory/element/InventoryCompound.java:55:60: Variable 'startDate' should be declared final.
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/inventory/element/InventoryCompound.java:55:76: Variable 'endDate' should be declared final.
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/inventory/element/InventoryCompound.java:55:97: Variable 'seatClass' should be declared final.
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/inventory/element/InventoryCompound.java:55:122: Variable 'organisation' should be declared final.
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/inventory/element/InventoryCompound.java:59:5: Missing a Javadoc comment.
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/inventory/element/InventoryCompound.java:63:5: Missing a Javadoc comment.
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/inventory/element/InventoryCompound.java:63:57: Variable 'unitType' should be declared final.
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/inventory/element/InventoryCompound.java:67:5: Missing a Javadoc comment.
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/inventory/element/InventoryCompound.java:67:36: Variable 'service' should be declared final.
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/inventory/element/InventoryAssetPool.java:12: Type Javadoc comment is missing an @version tag.
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/inventory/element/InventoryAssetPool.java:12: Type Javadoc tag @author must match pattern '\S \S'.
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/inventory/element/InventoryPhysical.java:12: Type Javadoc comment is missing an @version tag.
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/inventory/element/InventoryPhysical.java:12: Type Javadoc tag @author must match pattern '\S \S'.
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/inventory/element/InventoryLimit.java:12: Type Javadoc comment is missing an @version tag.
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/inventory/element/InventoryLimit.java:12: Type Javadoc tag @author must match pattern '\S \S'.
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/inventory/InventoryDate.java:19: Type Javadoc comment is missing an @version tag.
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/inventory/InventoryDate.java:19: Type Javadoc tag @author must match pattern '\S \S'.
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/inventory/InventoryDate.java:52:5: Missing a Javadoc comment.
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/inventory/InventoryDate.java:60:43: Expected @param tag for 'inventoryDetail'.
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/inventory/InventoryDate.java:60:43: Variable 'inventoryDetail' should be declared final.
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/inventory/InventoryDate.java:68: Trailing whitespace found.
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/inventory/InventoryDate.java:79:29: ',' is not followed by whitespace.
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/inventory/InventoryUtils.java:118:22: Variable 'consolidator' should be declared final.
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/PRODUCT_TYPE.java:33: Trailing whitespace found.
+/opt/dev/NetBeansProjects/darenDev/encompass/common/domain/src/main/java/com/encompass/domain/PRODUCT_TYPE.java:81: Trailing whitespace found.
+Audit done.
+
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 18.281s
+[INFO] Finished at: Sun Apr 29 13:29:19 EST 2012
+[INFO] Final Memory: 8M/68M
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-checkstyle-plugin:2.2:checkstyle (default) on project common-domain: An error has occurred in Checkstyle report generation. There are 65 checkstyle errors. -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
